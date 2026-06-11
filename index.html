@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IS Quiz Cram Sheet</title>
+    <title>IS Ultimate Cram Sheet</title>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -11,6 +11,7 @@
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --accent: #38bdf8;
+            --accent-warn: #fbbf24;
             --accent-success: #4ade80;
             --border: #334155;
         }
@@ -30,7 +31,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -40,17 +41,17 @@
         }
 
         header h1 {
-            font-size: 2.25rem;
+            font-size: 2.5rem;
             color: var(--text-main);
             margin-bottom: 0.5rem;
         }
 
         header p {
-            color: var(--accent);
+            color: var(--accent-warn);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            font-size: 0.875rem;
+            font-size: 0.9rem;
         }
 
         .quick-nav {
@@ -65,7 +66,7 @@
             background: var(--card-bg);
             border: 1px solid var(--border);
             color: var(--text-main);
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 0.5rem;
             cursor: pointer;
             font-size: 0.875rem;
@@ -79,6 +80,15 @@
             font-weight: 600;
         }
 
+        .nav-btn.btn-trap {
+            border-color: var(--accent-warn);
+            color: var(--accent-warn);
+        }
+        .nav-btn.btn-trap:hover, .nav-btn.btn-trap.active {
+            background: var(--accent-warn);
+            color: var(--bg-color);
+        }
+
         .chapter-section {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -89,17 +99,41 @@
         }
 
         .chapter-title {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             color: var(--accent);
             border-bottom: 2px solid var(--border);
             padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .trap-title {
+            color: var(--accent-warn);
+        }
+
+        .sub-header {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin: 1rem 0 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.9;
+            background: rgba(255,255,255,0.03);
+            padding: 0.25rem 0.5rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .trap-header {
+            border-left-color: var(--accent-warn);
         }
 
         .point-list {
             list-style: none;
+            margin-bottom: 1rem;
         }
 
         .point-item {
@@ -152,15 +186,51 @@
             color: var(--text-main);
         }
 
+        .hierarchy-flow {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            background: rgba(0,0,0,0.2);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin: 0.5rem 0 1rem 0;
+            border: 1px dashed var(--border);
+        }
+
+        .flow-step {
+            background: #2d3748;
+            padding: 0.25rem 0.6rem;
+            border-radius: 0.25rem;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--text-main);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .flow-arrow {
+            color: var(--accent-warn);
+            font-weight: bold;
+        }
+
         @media (max-width: 640px) {
             body {
                 padding: 1rem 0.5rem;
             }
             header h1 {
-                font-size: 1.75rem;
+                font-size: 2rem;
             }
             .chapter-section {
                 padding: 1rem;
+            }
+            .hierarchy-flow {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin-left: 0.5rem;
             }
         }
     </style>
@@ -169,84 +239,151 @@
 
 <div class="container">
     <header>
-        <h1>Information Systems</h1>
-        <p>High-Leverage Quiz Cram Sheet</p>
+        <h1>IS Complete Cram Sheet</h1>
+        <p>Warning: Contains structural sequences & system types prone to exam traps</p>
     </header>
 
     <div class="quick-nav">
-        <button class="nav-btn" onclick="filterChapter('all')">All Chapters</button>
+        <button class="nav-btn" onclick="filterChapter('all')">All Material</button>
+        <button class="nav-btn btn-trap" onclick="filterChapter('traps')">Exam Traps Only</button>
         <button class="nav-btn" onclick="filterChapter('ch1')">Ch 1</button>
         <button class="nav-btn" onclick="filterChapter('ch2')">Ch 01 (Org)</button>
         <button class="nav-btn" onclick="filterChapter('ch3')">Ch 3</button>
         <button class="nav-btn" onclick="filterChapter('ch4')">Ch 4</button>
     </div>
 
+    <!-- EXAM TRAPS SECTION -->
+    <div class="chapter-section" id="traps">
+        <h2 class="chapter-title trap-title">⚠️ Core Mandated Hierarchies & Sequences</h2>
+        
+        <div class="sub-header trap-header">1. The Information Hierarchy (Value Sequence)</div>
+        <div class="hierarchy-flow">
+            <span class="flow-step">Data (Raw Facts)</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Information (Contextualized Data)</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Knowledge (Actionable Understanding)</span>
+        </div>
+
+        <div class="sub-header trap-header">2. Computer-Based Information Systems (CBIS) Pillars</div>
+        <div class="hierarchy-flow">
+            <span class="flow-step">Hardware</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Software</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Database</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Network</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Procedures</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">People</span>
+        </div>
+
+        <div class="sub-header trap-header">3. Technical Data Hierarchy (Smallest to Largest)</div>
+        <div class="hierarchy-flow">
+            <span class="flow-step">Bit (0 or 1)</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Byte (8 bits)</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Field (Attribute)</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Record (Row)</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Table (File)</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Database</span>
+        </div>
+
+        <div class="sub-header trap-header">4. TCP/IP Protocol Stack Layers (Top to Bottom)</div>
+        <div class="hierarchy-flow">
+            <span class="flow-step">Application Layer (HTTP/SMTP)</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Transport Layer (TCP/UDP)</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Internet Layer (IP)</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Network Access Layer (Ethernet/Wi-Fi)</span>
+        </div>
+
+        <div class="sub-header trap-header">5. Network Geographic Boundaries</div>
+        <div class="hierarchy-flow">
+            <span class="flow-step">PAN (Personal)</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">LAN (Building)</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">MAN (City/Campus)</span> <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">WAN (Global/Internet)</span>
+        </div>
+    </div>
+
     <!-- CHAPTER 1 -->
     <div class="chapter-section" id="ch1">
         <h2 class="chapter-title">Chapter 1 - Foundations of Information Systems</h2>
+        
+        <div class="sub-header">Core Distinctions & Strategic Frameworks</div>
         <ul class="point-list">
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>IT vs IS:</strong> IT refers to computer-based tools to work with data; IS collects, processes, and distributes data to meet objectives.</div>
+                <div class="point-text"><strong>IT vs IS:</strong> IT is the toolset (hardware/software); IS is the integrated system that collects, processes, and transmits data to achieve structural targets.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Informed Users:</strong> Understand the technology behind applications, improve IT choices, and maximize business value.</div>
+                <div class="point-text"><strong>Informed Users:</strong> Gain exponential value by understanding backend tech constraints and maximizing organizational tooling potential.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Digital Transformation:</strong> Strategically leverages IT to fundamentally improve customer relationships, processes, and business models.</div>
+                <div class="point-text"><strong>Digital Transformation:</strong> Fundamental structural redesign of customer relationships, internal processes, and entire business operations using IT.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>E-business vs E-commerce:</strong> E-business includes all digital business operations, while E-commerce is strictly buying and selling online.</div>
+                <div class="point-text"><strong>E-Business vs E-Commerce:</strong> E-commerce is exclusively transacting value over the web; E-business comprises all digital aspects of running an enterprise.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>E-commerce Types:</strong> B2B, B2C, C2C, B2G, and C2G.</div>
+                <div class="point-text"><strong>E-Commerce Topologies:</strong> B2B (Enterprise-to-Enterprise), B2C (Retail to Consumer), C2C (Peer-to-Peer), B2G, and C2G.</div>
+            </li>
+        </ul>
+
+        <div class="sub-header">Types of Information Systems inside Organizations</div>
+        <ul class="point-list">
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>TPS (Transaction Processing Systems):</strong> Executes and records the daily routine transactions necessary to conduct business (e.g., POS terminal sales log).</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Special Business Systems:</strong> VR, AI, and simulation tools are deployed only when explicitly required for specific business purposes.</div>
+                <div class="point-text"><strong>FAIS (Functional Area Information Systems):</strong> Built exclusively to support an isolated department's internal mechanics (e.g., HR appraisal tools, Accounting ledgers).</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>ERP (Enterprise Resource Planning):</strong> Solves the "Isolated Silo" problem by forcing all separate FAIS databases to sync via a single, shared corporate data asset.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>IOS (Interorganizational Information Systems):</strong> Systems connecting separate enterprises to orchestrate seamless external B2B operations (e.g., Supply Chain Management).</div>
             </li>
         </ul>
     </div>
 
     <!-- CHAPTER 01 ORGANIZATIONS -->
     <div class="chapter-section" id="ch2">
-        <h2 class="chapter-title">Chapter 01 - IS in Organizations</h2>
+        <h2 class="chapter-title">Chapter 01 - IS in Organizations & Disruptive Pillars</h2>
+        
+        <div class="sub-header">The Disruptive Technological Pillars</div>
         <ul class="point-list">
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Big Data (5Vs):</strong> Handles complex, high-velocity data characterized by Volume, Velocity, Variety, Veracity, and Value.</div>
+                <div class="point-text"><strong>Big Data (The 5Vs):</strong> Oversized, complex data matrices defined strictly by <em>Volume</em> (scale), <em>Velocity</em> (speed), <em>Variety</em> (format diversification), <em>Veracity</em> (trustworthiness/cleanliness), and <em>Value</em>.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Social Computing:</strong> Combines social behavior with computing power (wikis, blogs, social networks) to drive crowdsourcing.</div>
+                <div class="point-text"><strong>Social Computing:</strong> Infrastructure blending web collaboration with human context (wikis, social network frameworks) to drive massive crowdsourcing.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Mobile Computing:</strong> Provides ubiquitous, portable, context-aware, and real-time data access over wireless networks.</div>
+                <div class="point-text"><strong>Mobile Computing:</strong> Continuous, portable, location/context-aware link to networks via modern wireless arrays.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Internet of Things (IoT):</strong> Connects physical objects embedded with sensors to the internet for automated data exchange.</div>
+                <div class="point-text"><strong>Internet of Things (IoT):</strong> Linking everyday physical objects directly to network hubs via embedded sensors to achieve automated machine-to-machine data exchanges.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Cloud Computing:</strong> Delivers on-demand computing resources over the internet via IaaS, PaaS, and SaaS models.</div>
+                <div class="point-text"><strong>Cloud Computing:</strong> Elastic, on-demand distribution of shared computing architectures over the web (Models: IaaS = Infrastructure, PaaS = Platform, SaaS = Software).</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Artificial Intelligence (AI):</strong> Simulates human intelligence patterns through machine learning, computer vision, and robotics.</div>
+                <div class="point-text"><strong>Artificial Intelligence (AI):</strong> Emulating advanced human logical and perceptual workflows using deep learning algorithms, vision models, and automated robotics.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Blockchain:</strong> Provides a decentralized, secure, and immutable ledger to record transactions and enforce trust without intermediaries.</div>
-            </li>
-            <li class="point-item" onclick="togglePoint(this)">
-                <div class="checkbox"></div>
-                <div class="point-text"><strong>Organizational Impact:</strong> Blurs work-life boundaries via constant connectivity and threatens structural job security through automation.</div>
+                <div class="point-text"><strong>Blockchain:</strong> Cryptographically secure, immutable, fully decentralized transaction ledgers designed to eliminate intermediary human trust fallacies.</div>
             </li>
         </ul>
     </div>
@@ -254,34 +391,28 @@
     <!-- CHAPTER 03 -->
     <div class="chapter-section" id="ch3">
         <h2 class="chapter-title">Chapter 03 - Data and Knowledge Management</h2>
+        
+        <div class="sub-header">Corporate Governance & Database Integrity</div>
         <ul class="point-list">
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Management Challenges:</strong> Exponential growth, data scattered across multiple media, and disconnected departmental silos.</div>
+                <div class="point-text"><strong>Data Governance:</strong> The official framework defining definitive ownership permissions, asset security parameters, and absolute regulatory compliance targets.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Data Governance:</strong> Formal policies and procedures managing corporate data availability, integrity, ownership, and security.</div>
+                <div class="point-text"><strong>Master Data Management (MDM):</strong> Processes designed to tie down core operational master entities into an unambiguous corporate "single version of truth."</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Master Data Management (MDM):</strong> Processes to integrate core corporate data into a single, accurate "version of the truth."</div>
+                <div class="point-text"><strong>Relational Key Matrix:</strong> <em>Primary Key</em> uniquely identifies an isolated row. <em>Foreign Key</em> references a Primary Key in another table to force structural relational links.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Data Hierarchy:</strong> Bit &rarr; Byte &rarr; Field &rarr; Record &rarr; Table &rarr; Database.</div>
+                <div class="point-text"><strong>Data Warehouses vs Data Marts:</strong> Warehouses store historical data for enterprise-wide analysis; Data Marts are down-scaled, department-specific analytical repositories.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Relational Databases:</strong> Use primary keys (unique identifiers) and foreign keys (links to other tables) to connect structured data attributes.</div>
-            </li>
-            <li class="point-item" onclick="togglePoint(this)">
-                <div class="checkbox"></div>
-                <div class="point-text"><strong>Warehouses vs Marts:</strong> Data Warehouses are central repositories of historical data for analysis; Data Marts are scaled-down versions for specific departments.</div>
-            </li>
-            <li class="point-item" onclick="togglePoint(this)">
-                <div class="checkbox"></div>
-                <div class="point-text"><strong>Knowledge Management (KM):</strong> A continuous cycle of creating, capturing, refining, storing, managing, and disseminating explicit and tacit knowledge.</div>
+                <div class="point-text"><strong>Knowledge Management Cycle:</strong> The circular workflow tracking intellectual capital through six distinct milestones: <em>Create &rarr; Capture &rarr; Refine &rarr; Store &rarr; Manage &rarr; Disseminate</em>.</div>
             </li>
         </ul>
     </div>
@@ -289,34 +420,24 @@
     <!-- CHAPTER 04 -->
     <div class="chapter-section" id="ch4">
         <h2 class="chapter-title">Chapter 04 - Telecommunications & Networking</h2>
+        
+        <div class="sub-header">Wired Media & Network Foundations</div>
         <ul class="point-list">
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Network Scales:</strong> PAN (personal area), LAN (local area/building), MAN (city/campus), WAN (wide area/global).</div>
+                <div class="point-text"><strong>Physical Wired Mediums:</strong> <em>Twisted-Pair</em> (cheap, copper, highly susceptible to interference), <em>Coaxial Cable</em> (insulated copper with higher throughput capacity), <em>Fiber-Optic</em> (glass filaments pushing light signals; immune to interference, unparalleled speed).</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Wired Transmission Media:</strong> Twisted-pair (cheap/slow), Coaxial (higher bandwidth/shielded), Fiber-optic (fastest/uses light pulses).</div>
+                <div class="point-text"><strong>Network Protocols:</strong> Structured system rulebooks formatting communications; TCP/IP acts as the universal standard underlying the Internet.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>Protocols & TCP/IP:</strong> Protocols are standard communication rules; TCP/IP is the foundational protocol stack of the Internet.</div>
+                <div class="point-text"><strong>Domain Name System (DNS):</strong> The global translation directory mapping human-readable alphabetic URLs to numeric machine IP targets.</div>
             </li>
             <li class="point-item" onclick="togglePoint(this)">
                 <div class="checkbox"></div>
-                <div class="point-text"><strong>TCP/IP Layers:</strong> Application, Transport, Internet, and Network Access.</div>
-            </li>
-            <li class="point-item" onclick="togglePoint(this)">
-                <div class="checkbox"></div>
-                <div class="point-text"><strong>Domain Name System (DNS):</strong> Maps user-friendly text domain names directly to numeric IP destination addresses.</div>
-            </li>
-            <li class="point-item" onclick="togglePoint(this)">
-                <div class="checkbox"></div>
-                <div class="point-text"><strong>World Wide Web (WWW):</strong> An internet application using HTTP/HTTPS protocols to access linked web pages via URLs.</div>
-            </li>
-            <li class="point-item" onclick="togglePoint(this)">
-                <div class="checkbox"></div>
-                <div class="point-text"><strong>Telecommuting:</strong> Working remotely using internet and collaboration tools; increases flexibility but risks personal isolation and tracking difficulties.</div>
+                <div class="point-text"><strong>World Wide Web (WWW):</strong> A specialized internet utility parsing hypertext pages via HTTP/HTTPS protocols over web browsers.</div>
             </li>
         </ul>
     </div>
@@ -331,15 +452,28 @@
         const sections = document.querySelectorAll('.chapter-section');
         const buttons = document.querySelectorAll('.nav-btn');
         
-        // Update active button styling
         buttons.forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
 
         sections.forEach(section => {
-            if (id === 'all' || section.id === id) {
+            if (id === 'all') {
                 section.style.display = 'block';
+            } else if (id === 'traps') {
+                if (section.id === 'traps') {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
             } else {
-                section.style.display = 'none';
+                if (section.id === 'traps') {
+                    section.style.display = 'block'; // Keep hierarchies visible for general context if wanted, or hide. Let's hide to isolate chapter.
+                    section.style.display = 'none';
+                }
+                if (section.id === id) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
             }
         });
     }
