@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IS Quiz Cram Sheet</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-success: #4ade80;
+            --border: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 2rem 1rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        header h1 {
+            font-size: 2.25rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+        }
+
+        .quick-nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .nav-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--accent);
+            color: var(--bg-color);
+            border-color: var(--accent);
+            font-weight: 600;
+        }
+
+        .chapter-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .chapter-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .point-list {
+            list-style: none;
+        }
+
+        .point-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .point-item:last-child {
+            border-bottom: none;
+        }
+
+        .checkbox {
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid var(--border);
+            border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0.15rem;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .point-item.checked .checkbox {
+            background: var(--accent-success);
+            border-color: var(--accent-success);
+        }
+
+        .point-item.checked .checkbox::after {
+            content: "✓";
+            color: var(--bg-color);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .point-item.checked .point-text {
+            color: var(--text-muted);
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .point-text {
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+            header h1 {
+                font-size: 1.75rem;
+            }
+            .chapter-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Information Systems</h1>
+        <p>High-Leverage Quiz Cram Sheet</p>
+    </header>
+
+    <div class="quick-nav">
+        <button class="nav-btn" onclick="filterChapter('all')">All Chapters</button>
+        <button class="nav-btn" onclick="filterChapter('ch1')">Ch 1</button>
+        <button class="nav-btn" onclick="filterChapter('ch2')">Ch 01 (Org)</button>
+        <button class="nav-btn" onclick="filterChapter('ch3')">Ch 3</button>
+        <button class="nav-btn" onclick="filterChapter('ch4')">Ch 4</button>
+    </div>
+
+    <!-- CHAPTER 1 -->
+    <div class="chapter-section" id="ch1">
+        <h2 class="chapter-title">Chapter 1 - Foundations of Information Systems</h2>
+        <ul class="point-list">
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>IT vs IS:</strong> IT refers to computer-based tools to work with data; IS collects, processes, and distributes data to meet objectives.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Informed Users:</strong> Understand the technology behind applications, improve IT choices, and maximize business value.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Digital Transformation:</strong> Strategically leverages IT to fundamentally improve customer relationships, processes, and business models.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>E-business vs E-commerce:</strong> E-business includes all digital business operations, while E-commerce is strictly buying and selling online.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>E-commerce Types:</strong> B2B, B2C, C2C, B2G, and C2G.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Special Business Systems:</strong> VR, AI, and simulation tools are deployed only when explicitly required for specific business purposes.</div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- CHAPTER 01 ORGANIZATIONS -->
+    <div class="chapter-section" id="ch2">
+        <h2 class="chapter-title">Chapter 01 - IS in Organizations</h2>
+        <ul class="point-list">
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Big Data (5Vs):</strong> Handles complex, high-velocity data characterized by Volume, Velocity, Variety, Veracity, and Value.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Social Computing:</strong> Combines social behavior with computing power (wikis, blogs, social networks) to drive crowdsourcing.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Mobile Computing:</strong> Provides ubiquitous, portable, context-aware, and real-time data access over wireless networks.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Internet of Things (IoT):</strong> Connects physical objects embedded with sensors to the internet for automated data exchange.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Cloud Computing:</strong> Delivers on-demand computing resources over the internet via IaaS, PaaS, and SaaS models.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Artificial Intelligence (AI):</strong> Simulates human intelligence patterns through machine learning, computer vision, and robotics.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Blockchain:</strong> Provides a decentralized, secure, and immutable ledger to record transactions and enforce trust without intermediaries.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Organizational Impact:</strong> Blurs work-life boundaries via constant connectivity and threatens structural job security through automation.</div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- CHAPTER 03 -->
+    <div class="chapter-section" id="ch3">
+        <h2 class="chapter-title">Chapter 03 - Data and Knowledge Management</h2>
+        <ul class="point-list">
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Management Challenges:</strong> Exponential growth, data scattered across multiple media, and disconnected departmental silos.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Data Governance:</strong> Formal policies and procedures managing corporate data availability, integrity, ownership, and security.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Master Data Management (MDM):</strong> Processes to integrate core corporate data into a single, accurate "version of the truth."</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Data Hierarchy:</strong> Bit &rarr; Byte &rarr; Field &rarr; Record &rarr; Table &rarr; Database.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Relational Databases:</strong> Use primary keys (unique identifiers) and foreign keys (links to other tables) to connect structured data attributes.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Warehouses vs Marts:</strong> Data Warehouses are central repositories of historical data for analysis; Data Marts are scaled-down versions for specific departments.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Knowledge Management (KM):</strong> A continuous cycle of creating, capturing, refining, storing, managing, and disseminating explicit and tacit knowledge.</div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- CHAPTER 04 -->
+    <div class="chapter-section" id="ch4">
+        <h2 class="chapter-title">Chapter 04 - Telecommunications & Networking</h2>
+        <ul class="point-list">
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Network Scales:</strong> PAN (personal area), LAN (local area/building), MAN (city/campus), WAN (wide area/global).</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Wired Transmission Media:</strong> Twisted-pair (cheap/slow), Coaxial (higher bandwidth/shielded), Fiber-optic (fastest/uses light pulses).</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Protocols & TCP/IP:</strong> Protocols are standard communication rules; TCP/IP is the foundational protocol stack of the Internet.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>TCP/IP Layers:</strong> Application, Transport, Internet, and Network Access.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Domain Name System (DNS):</strong> Maps user-friendly text domain names directly to numeric IP destination addresses.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>World Wide Web (WWW):</strong> An internet application using HTTP/HTTPS protocols to access linked web pages via URLs.</div>
+            </li>
+            <li class="point-item" onclick="togglePoint(this)">
+                <div class="checkbox"></div>
+                <div class="point-text"><strong>Telecommuting:</strong> Working remotely using internet and collaboration tools; increases flexibility but risks personal isolation and tracking difficulties.</div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    function togglePoint(element) {
+        element.classList.toggle('checked');
+    }
+
+    function filterChapter(id) {
+        const sections = document.querySelectorAll('.chapter-section');
+        const buttons = document.querySelectorAll('.nav-btn');
+        
+        // Update active button styling
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        sections.forEach(section => {
+            if (id === 'all' || section.id === id) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+    }
+    
+    // Set first button active by default
+    document.querySelector('.nav-btn').classList.add('active');
+</script>
+
+</body>
+</html>
